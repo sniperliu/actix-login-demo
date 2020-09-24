@@ -1,0 +1,12 @@
+[package]
+authors = ["Liu Hao <liuhao@nets.com.sg>"]
+edition = "2018"
+name = "frontend"
+version = "0.1.0"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+yew = "*"
+wasm-bindgen = "0.2.67"
