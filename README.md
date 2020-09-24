@@ -2,6 +2,12 @@
 
 A learning project to use Rust/Actix/Diesel/Yew to build a simple user registration/login web app.
 
+## Play
+
+```shell
+cargo run -p backend
+```
+
 ## Backend Features
 
 - [ ] Users API CRD
@@ -17,3 +23,7 @@ A learning project to use Rust/Actix/Diesel/Yew to build a simple user registrat
 - [ ] Registration Page
 - [ ] Login Page
 - [ ] Hello Page with need Authentication
+
+## Reference
+
+1. https://erwabook.com/intro/create-a-browser-based-frontend-ui.html

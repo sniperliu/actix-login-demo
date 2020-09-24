@@ -3,14 +3,6 @@ authors = ["Liu Hao <liuhao@nets.com.sg>"]
 edition = "2018"
 name = "hello-world"
 version = "0.1.0"
-[dependencies]
-actix-web = "*"
-chrono = { version = "*", features = [ "serde" ] }
-dotenv = "*"
-env_logger = "*"
-serde = "*"
-serde_json = "*"
 
-[dependencies.diesel]
-features = ["mysql", "r2d2", "chrono"]
-version = "1.4.5"
+[workspace]
+members = ["backend"]
