@@ -5,7 +5,13 @@ A learning project to use Rust/Actix/Diesel/Yew to build a simple user registrat
 ## Play
 
 ```shell
+cargo make
+
 cargo run -p backend
+
+cargo +nightly install miniserve
+
+miniserve ./frontend/static --index index.html
 ```
 
 ## Backend Features
