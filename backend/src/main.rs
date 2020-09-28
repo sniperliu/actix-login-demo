@@ -32,7 +32,7 @@ async fn main() -> std::io::Result<()> {
             .service(handlers::get_user)
             .service(handlers::add_user)
     })
-    .bind("127.0.0.1:8080")?
-    .run()
-    .await
+        .bind("0.0.0.0:8080")?
+        .run()
+        .await
 }

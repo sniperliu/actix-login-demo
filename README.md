@@ -11,7 +11,10 @@ cargo run -p backend
 
 cargo +nightly install miniserve
 
-miniserve ./frontend/static --index index.html
+miniserve ./frontend/static -p 8081 --index index.html
+
+docker-compose up
+docker-compose up --build
 ```
 
 ## Backend Features

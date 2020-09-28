@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: 'mysql:5.7'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      - '3307:3306'
+  backend:
+    build: '.'
+    environment:
+      - DATABASE_URL=mysql://root:admin@db:3306/demo
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
