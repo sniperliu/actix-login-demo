@@ -6,6 +6,7 @@ edition = "2018"
 
 [dependencies]
 actix-web = "*"
+actix-files = "*"
 chrono = { version = "*", features = [ "serde" ] }
 dotenv = "*"
 env_logger = "*"

@@ -2,14 +2,15 @@
 extern crate diesel;
 
 use actix_web::{middleware, App, HttpServer};
+use actix_files as fs;
 
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
-mod schema;
-mod models;
 mod actions;
 mod handlers;
+mod models;
+mod schema;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -27,10 +28,11 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .data(pool.clone())
             .wrap(middleware::Logger::default())
+            .service(fs::Files::new("/", "./static"))
             .service(handlers::get_user)
             .service(handlers::add_user)
     })
-        .bind("127.0.0.1:8080")?
-        .run()
-        .await
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
 }
