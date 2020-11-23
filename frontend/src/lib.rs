@@ -1,30 +1,39 @@
 use wasm_bindgen::prelude::*;
 use yew::prelude::*;
+use yew_router::{components::RouterAnchor, prelude::*};
 
-struct Model {
+mod content;
+mod login;
+
+struct AppModel {
     link: ComponentLink<Self>,
-    value: i64,
 }
 
-enum Msg {
-    AddOne,
+struct AppMsg;
+
+#[derive(Switch, Debug, Clone)]
+enum AppRoute {
+    #[to = "/registration"]
+    Registration,
+    #[to = "/content"]
+    Content,
 }
 
-impl Component for Model {
-    type Message = Msg;
+type AppRouter = Router<AppRoute>;
+type AppAnchor = RouterAnchor<AppRoute>;
+
+impl Component for AppModel {
+    type Message = AppMsg;
+
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
             link,
-            value: 0,
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg {
-            Msg::AddOne => self.value += 1
-        }
-        true
+        false
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
@@ -36,15 +45,25 @@ impl Component for Model {
 
     fn view(&self) -> Html {
         html! {
-            <div>
-                <button onclick=self.link.callback(|_| Msg::AddOne)>{ "+1" }</button>
-                <p>{ self.value }</p>
-            </div>
+            <>
+                <nav>
+                <AppAnchor route=AppRoute::Registration>{ "Registration" }</AppAnchor>
+                <AppAnchor route=AppRoute::Content>{ "Content" }</AppAnchor>
+                </nav>
+                <main>
+                <AppRouter render=Router::render(|switch: AppRoute| {
+                    match switch {
+                        AppRoute::Registration => html!{ <login::Registration /> },
+                        AppRoute::Content => html!{ <content::Content /> },
+                    }
+                }) />
+                </main>
+            </>
         }
     }
 }
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
-    App::<Model>::new().mount_to_body();
+    App::<AppModel>::new().mount_to_body();
 }
